@@ -23,19 +23,25 @@ makeCacheMatrix <- function(x = matrix()) {
 
 
 ## Write a short comment describing this function
+## cacheSolve takes an argument x which is the makeCacheMatrix function
+## the if loop then checks to see if there is already an inverse
+## if there is an inverse it is retrieved from the cache and printed
+## if there is no inverse that has already been calculated then the last 3 lines of code create an inverse
+## the last line of code 'm' prints the inverse
 
 cacheSolve <- function(x, ...) {
   ## Return a matrix that is the inverse of 'x'
-  m <- x$getinverse()
   
-  if(!is.null(m)){
+  m <- x$getinverse()   #initiates variable
+  
+  if(!is.null(m)){                  #loop that will check to see if cache has been made
     message('getting cached data')
     return(m)
   }
   
-  data <- x$get()
+  data <- x$get()         #if no cache, will create the inverse
   m <- solve(data, ...)
   x$setinverse()
-  m
+  m                       #prints the result
 }
 
